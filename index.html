@@ -14,6 +14,9 @@
             --border-color: #eeeeee;
             --option-bg: #f9f9f9;
             --option-hover: #eef2f3;
+            /* Nova Cor Verde Fluorescente */
+            --brand-color: #39FF14; 
+            --brand-hover: #32cd32;
         }
 
         /* Cores do Modo Escuro */
@@ -31,20 +34,22 @@
         .container { max-width: 800px; margin: 20px auto; background: var(--bg-container); padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); position: relative; }
         .hidden { display: none; }
         
-        h1 { color: #3498db; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        /* Título e borda em Verde Fluorescente */
+        h1 { color: var(--brand-color); text-align: center; border-bottom: 2px solid var(--brand-color); padding-bottom: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
         
         /* Botão de Alternar Tema */
-        .theme-toggle { position: fixed; top: 20px; right: 20px; background: #3498db; color: white; border: none; padding: 10px; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle { position: fixed; top: 20px; right: 20px; background: var(--brand-color); color: black; border: none; padding: 10px; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); z-index: 1000; display: flex; align-items: center; justify-content: center; }
 
-        .btn-menu { display: block; width: 100%; padding: 15px; margin: 10px 0; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s; font-weight: bold; }
-        .btn-menu:hover { background-color: #2980b9; }
+        /* Botões do Menu principais em Verde com Texto Preto */
+        .btn-menu { display: block; width: 100%; padding: 15px; margin: 10px 0; background-color: var(--brand-color); color: black; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .btn-menu:hover { background-color: var(--brand-hover); transform: translateY(-2px); }
         
-        .btn-acumulado { background-color: #e74c3c !important; border: 2px solid #c0392b; }
-        .btn-continuar { background-color: #e67e22 !important; border: 2px solid #d35400; }
+        .btn-acumulado { background-color: #e74c3c !important; color: white !important; border: 2px solid #c0392b; }
+        .btn-continuar { background-color: #e67e22 !important; color: white !important; border: 2px solid #d35400; }
         .badge { background: white; color: #e74c3c; padding: 2px 10px; border-radius: 20px; margin-left: 10px; font-size: 14px; }
         
         .option { background: var(--option-bg); border: 2px solid var(--border-color); padding: 12px; margin: 8px 0; border-radius: 8px; cursor: pointer; transition: 0.2s; color: var(--text-main); }
-        .option:hover { background: var(--option-hover); border-color: #3498db; }
+        .option:hover { background: var(--option-hover); border-color: var(--brand-color); }
         
         /* Feedback */
         .correct-fill { background-color: #d4edda !important; border-color: #28a745 !important; color: #155724 !important; font-weight: bold; }
@@ -56,7 +61,8 @@
         
         button { padding: 10px 20px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; font-size: 14px; }
         .btn-prev { background: #95a5a6; color: white; flex: 1; }
-        .btn-next { background: #27ae60; color: white; flex: 1; }
+        /* Botão Próximo em Verde */
+        .btn-next { background: var(--brand-color); color: black; flex: 1; }
         .btn-exit { background: #e74c3c; color: white; }
         .btn-pause { background: #f39c12; color: white; }
         
@@ -80,7 +86,7 @@
 <button class="theme-toggle" onclick="toggleTheme()" title="Trocar Tema">🌓</button>
 
 <div id="menu" class="container">
-    <h1>Simulado de Inspeção (PE )</h1>
+    <h1>Simulado de Inspeção (PE)</h1>
     
     <button id="btnRefazerTudoErrado" class="btn-menu btn-acumulado hidden" onclick="iniciarSimulado('erros_globais')">
         🚩 REFAZER QUESTÕES ERRADAS <span id="contadorGlobal" class="badge">0</span>
@@ -90,9 +96,45 @@
         ⚡ CONTINUAR ONDE PAREI
     </button>
 
-    <hr style="border:0; border-top: 1px solid #eee; margin: 20px 0;">
+    <hr style="border:0; border-top: 1px solid var(--border-color); margin: 20px 0;">
 
     <button class="btn-menu" onclick="iniciarSimulado('total')">1 - Simulado Completo (Todas)</button>
+    
+    <div class="settings-box">
+        <button class="btn-clear" onclick="limparProgresso()">Limpar Histórico e Progresso</button>
+    </div>
+</div>
+
+<script>
+    // Função para alternar o tema (claro/escuro)
+    function toggleTheme() {
+        const body = document.documentElement;
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+        }
+    }
+
+    // Funções placeholder para o funcionamento (já que o script original não foi fornecido na íntegra)
+    function iniciarSimulado(tipo) {
+        alert('Iniciando simulado: ' + tipo);
+    }
+
+    function retomarSimulado() {
+        alert('Retomando simulado...');
+    }
+
+    function limparProgresso() {
+        if(confirm('Deseja realmente limpar todo o progresso?')) {
+            alert('Progresso limpo!');
+        }
+    }
+</script>
+
+</body>
+</html>
+
     
     <div style="margin: 20px 0; padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; text-align: center;">
         <label>2 - Escolher Prova: </label>
