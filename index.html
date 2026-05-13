@@ -100,42 +100,6 @@
 
     <button class="btn-menu" onclick="iniciarSimulado('total')">1 - Simulado Completo (Todas)</button>
     
-    <div class="settings-box">
-        <button class="btn-clear" onclick="limparProgresso()">Limpar Histórico e Progresso</button>
-    </div>
-</div>
-
-<script>
-    // Função para alternar o tema (claro/escuro)
-    function toggleTheme() {
-        const body = document.documentElement;
-        if (body.getAttribute('data-theme') === 'dark') {
-            body.removeAttribute('data-theme');
-        } else {
-            body.setAttribute('data-theme', 'dark');
-        }
-    }
-
-    // Funções placeholder para o funcionamento (já que o script original não foi fornecido na íntegra)
-    function iniciarSimulado(tipo) {
-        alert('Iniciando simulado: ' + tipo);
-    }
-
-    function retomarSimulado() {
-        alert('Retomando simulado...');
-    }
-
-    function limparProgresso() {
-        if(confirm('Deseja realmente limpar todo o progresso?')) {
-            alert('Progresso limpo!');
-        }
-    }
-</script>
-
-</body>
-</html>
-
-    
     <div style="margin: 20px 0; padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; text-align: center;">
         <label>2 - Escolher Prova: </label>
         <select id="escolhaProva" style="padding: 8px; border-radius: 4px; background: var(--option-bg); color: var(--text-main);">
